@@ -1,0 +1,12 @@
+{
+  "LIGHT_SWITCH.SceneControlTitle": "Light Switch",
+  "LIGHT_SWITCH.SettingName": "Enable Light Switch",
+  "LIGHT_SWITCH.SettingHint": "When enabled and not on the Lighting layer, GMs can see ambient light icons and left-click them to toggle hidden on/off.",
+  "LIGHT_SWITCH.HideByLevelSettingName": "Hide Light Icons By Level (v14)",
+  "LIGHT_SWITCH.HideByLevelSettingHint": "Hide Light Switch icons if the ambient light is not in the currently viewed level/elevation.",
+  "LIGHT_SWITCH.ShowByLevelsV13SettingName": "Show Lights by Levels Range (v13)",
+  "LIGHT_SWITCH.ShowByLevelsV13SettingHint": "If Levels UI range is enabled, only show light icons with elevation inside the current Levels UI range.",
+  "LIGHT_SWITCH.KeybindingToggleName": "Toggle Light Switch",
+  "LIGHT_SWITCH.KeybindingToggleHint": "Toggle the Light Switch tool on/off. Default: Shift+L.",
+  "LIGHT_SWITCH.ContextAll": "All"
+}
