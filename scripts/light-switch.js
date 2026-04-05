@@ -303,6 +303,7 @@ function setProxyIconTexture(icon, texture) {
     icon.texture = texture;
     return;
   }
+
   if ( icon.iconSrc === texture ) return;
   icon.iconSrc = texture;
   icon.texture = null;
