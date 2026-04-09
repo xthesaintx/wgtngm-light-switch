@@ -39,22 +39,6 @@ jobs:
           artifacts: "./module.json, ./module.zip"
           tag: ${{ github.event.release.tag_name }}
 
-      # 5. Wait until the uploaded module.json asset is publicly retrievable
-      - name: Wait For Release Manifest URL
-        run: |
-          manifest_url="https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/module.json"
-          for attempt in $(seq 1 30); do
-            status="$(curl -s -o /dev/null -L -w "%{http_code}" "$manifest_url")"
-            if [ "$status" = "200" ]; then
-              echo "Manifest URL is available: $manifest_url"
-              exit 0
-            fi
-            echo "Attempt $attempt/30: manifest not ready yet (HTTP $status). Retrying in 5s..."
-            sleep 5
-          done
-          echo "Manifest URL never became available: $manifest_url"
-          exit 1
-
       # # 5. Publish the module to the Foundry VTT website
       - name: Publish to FoundryVTT Website
         uses: cs96and/FoundryVTT-release-package@v1
@@ -62,3 +46,4 @@ jobs:
           package-token: ${{ secrets.PACKAGE_TOKEN }}
           manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/module.json
           notes-url: "https://github.com/${{ github.repository }}/blob/main/changelog.md"
+
