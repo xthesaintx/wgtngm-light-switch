@@ -1,8 +1,8 @@
 {
   "id": "wgtngm-light-switch",
-  "title": "Light Switch WgtnGM",
+  "title": "Light Switch",
   "description": "Adds a scene control toggle that lets GMs view and control lights outside the Lighting layer.",
-  "version": "0.1.0",
+  "version": "",
   "authors": [
     {
       "name": "Stephen Garrett",
