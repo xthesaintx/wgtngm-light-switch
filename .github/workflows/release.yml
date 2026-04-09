@@ -36,8 +36,21 @@ jobs:
           tag: ${{ github.event.release.tag_name }}
 
       # Add a small delay to ensure files are available on GitHub
-      - name: Wait for Release Files
-        run: sleep 5
+      - name: Wait for Release Files to be Available
+        run: |
+          max_attempts=12
+          attempt=0
+          while [ $attempt -lt $max_attempts ]; do
+            if curl -f -s https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/module.json > /dev/null; then
+              echo "Manifest file is available"
+              exit 0
+            fi
+            attempt=$((attempt + 1))
+            echo "Attempt $attempt/$max_attempts: Manifest not yet available, waiting..."
+            sleep 5
+          done
+          echo "Manifest file failed to become available"
+          exit 1
 
       - name: Publish to FoundryVTT Website
         uses: cs96and/FoundryVTT-release-package@v1
