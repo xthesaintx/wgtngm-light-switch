@@ -14,47 +14,42 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Substitute Manifest Details
-        uses: im-open/variable-substitution@v2
-        with:
-          files: "module.json"
-        env:
-          version: ${{ github.event.release.tag_name }}
-          url: https://github.com/${{ github.repository }}
-          manifest: https://github.com/${{ github.repository }}/releases/latest/download/module.json
-          download: https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/module.zip
+      - name: Update module.json for this release
+        run: |
+          VERSION="${{ github.event.release.tag_name }}"
+          REPO_URL="https://github.com/${{ github.repository }}"
+
+          jq \
+            --arg version "$VERSION" \
+            --arg url "$REPO_URL" \
+            --arg manifest "$REPO_URL/releases/latest/download/module.json" \
+            --arg download "$REPO_URL/releases/download/$VERSION/module.zip" \
+            '.version = $version | .url = $url | .manifest = $manifest | .download = $download' \
+            module.json > module.json.tmp
+
+          mv module.json.tmp module.json
 
       - name: Create Zip Archive
-        run: zip -r ./module.zip module.json readme.md changelog.md scripts/ lang/
+        run: |
+          files=(module.json README.md scripts styles templates lang)
+          [ -f ChangeLog.md ] && files+=(ChangeLog.md)
+          [ -d ui ] && files+=(ui)
+          [ -d packs ] && files+=(packs)
+          zip -r module.zip "${files[@]}"
 
       - name: Update Release with Files
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: "./module.json, ./module.zip"
+          replacesArtifacts: true
+          artifacts: "./module.json,./module.zip"
           tag: ${{ github.event.release.tag_name }}
-
-      # Add a small delay to ensure files are available on GitHub
-      - name: Wait for Release Files to be Available
-        run: |
-          max_attempts=12
-          attempt=0
-          while [ $attempt -lt $max_attempts ]; do
-            if curl -f -s https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/module.json > /dev/null; then
-              echo "Manifest file is available"
-              exit 0
-            fi
-            attempt=$((attempt + 1))
-            echo "Attempt $attempt/$max_attempts: Manifest not yet available, waiting..."
-            sleep 5
-          done
-          echo "Manifest file failed to become available"
-          exit 1
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to FoundryVTT Website
+        if: ${{ secrets.PACKAGE_TOKEN != '' }}
         uses: cs96and/FoundryVTT-release-package@v1
         with:
           package-token: ${{ secrets.PACKAGE_TOKEN }}
           manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/module.json
-          notes-url: "https://github.com/${{ github.repository }}/blob/main/ChangeLog.md"
+          notes-url: https://github.com/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }}
