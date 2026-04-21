@@ -1,3 +1,6 @@
+# NOTE
+This is no longer being hosted on GitHub and there is now a centralised issue tracking repo [here](https://github.com/xthesaintx/wgtngm/issues)
+
 # Light Switch
 Light Switch adds an independent lighting-control toggle that lets you easily turn individual lights, multiple tagged lights, or all lights in a scene on or off.
 
