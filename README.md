@@ -1,7 +1,7 @@
 # Project Relocated
 This project is no longer hosted on GitHub. Development and maintenance are actively continuing at our new centralised home.
 
-### Current Links
+### Links
 * **Website:** [wgtngm.com](https://wgtngm.com/)
 * **Documentation**: [campaigncodex.wgtngm.com](https://campaigncodex.wgtngm.com/)
 * **Issue Tracking:** [Centralized Issue Tracker](https://github.com/xthesaintx/wgtngm/issues)
@@ -9,4 +9,4 @@ This project is no longer hosted on GitHub. Development and maintenance are acti
 
 ### Community and Support
 * **Discord:** [Join the community](https://discord.gg/fycwH79s2y)
-* **Support:** [Patreon](https://patreon.com/wgtngm) or [Ko-fi](https://ko-fi.com/wgtngm)
+* **Support the Development:** [Patreon](https://patreon.com/wgtngm) or [Ko-fi](https://ko-fi.com/wgtngm)
