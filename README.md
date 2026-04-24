@@ -1,20 +1,12 @@
-# NOTE
-This is no longer being hosted on GitHub and there is now a centralised issue tracking repo [here](https://github.com/xthesaintx/wgtngm/issues)
+# Project Relocated
+This project is no longer hosted on GitHub. Development and maintenance are actively continuing at our new centralised home.
 
-# Light Switch
-Light Switch adds an independent lighting-control toggle that lets you easily turn individual lights, multiple tagged lights, or all lights in a scene on or off.
+### Current Links
+* **Website:** [wgtngm.com](https://wgtngm.com/)
+* **Documentation**: [campaigncodex.wgtngm.com](https://campaigncodex.wgtngm.com/)
+* **Issue Tracking:** [Centralized Issue Tracker](https://github.com/xthesaintx/wgtngm/issues)
+* **Video Content:** [YouTube Channel](https://www.youtube.com/@WgtnGM)
 
-## Features
-- The Light Switch toggle appears under the Lighting scene controls.
-- **Default shortcut key:** `Shift+L` (GM-only, configurable in Keybindings).
-
-## Usage
-
-**When the toggle is ON and the Lighting layer is NOT active:**
-- Light icons remain visible to the GM.
-- **Left-clicking** a light icon toggles its state (on/off).
-- **Right-clicking** a light icon opens a context menu displaying `All`, plus each tag associated with that light.
-- Choosing a specific tag toggles all scene lights sharing that tag; choosing `All` toggles every light in the scene.
-
-**When the Lighting layer IS active:**
-This module does not alter normal Foundry VTT behaviour.
+### Community and Support
+* **Discord:** [Join the community](https://discord.gg/fycwH79s2y)
+* **Support:** [Patreon](https://patreon.com/wgtngm) or [Ko-fi](https://ko-fi.com/wgtngm)
